@@ -7,10 +7,9 @@ const connectDB = async () => {
     if (!uri) {
       throw new Error('MONGODB_URI is not defined in the .env file');
     }
-    await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+
+    // MongoDB v4.x.x no longer requires useNewUrlParser and useUnifiedTopology
+    await mongoose.connect(uri);
     console.log('MongoDB connected');
   } catch (err) {
     console.error(err.message);
